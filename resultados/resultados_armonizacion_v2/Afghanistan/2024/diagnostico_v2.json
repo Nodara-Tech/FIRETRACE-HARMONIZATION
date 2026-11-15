@@ -1,0 +1,185 @@
+{
+  "pais": "Afghanistan",
+  "anio": 2024,
+  "parameters": {
+    "grid_km": 2.0,
+    "pass_window_minutes": 30,
+    "pass_span_minutes": 12,
+    "quality": "todas"
+  },
+  "sources": [
+    "modis (modis_2024_Afghanistan.csv)",
+    "viirs-snpp (viirs-snpp_2024_Afghanistan.csv)",
+    "viirs-jpss1 (viirs-jpss1_2024_Afghanistan.csv)"
+  ],
+  "input_counts": {
+    "modis": 101,
+    "viirs-snpp": 532,
+    "viirs-jpss1": 613
+  },
+  "invalid_rows": {},
+  "quality": {
+    "modis": {
+      "detecciones_type0": 94,
+      "baja_confianza": 0,
+      "frp_invalido_cero_nulo": 0
+    },
+    "viirs-snpp": {
+      "detecciones_type0": 505,
+      "baja_confianza": 54,
+      "frp_invalido_cero_nulo": 0
+    },
+    "viirs-jpss1": {
+      "detecciones_type0": 570,
+      "baja_confianza": 71,
+      "frp_invalido_cero_nulo": 0
+    }
+  },
+  "valid_total": 1246,
+  "used_total": 1169,
+  "cell_day_proxy": {
+    "ambos": 34,
+    "solo_modis": 46,
+    "solo_viirs": 660,
+    "union": 740,
+    "modis": 80,
+    "viirs": 694
+  },
+  "candidate_pairs": 18,
+  "frp_relations": [
+    {
+      "modis": "Aqua",
+      "viirs": "NOAA-20",
+      "dia_noche": "D",
+      "pares_frp_validos": 10,
+      "dias_distintos": 8,
+      "train_pares": 7,
+      "test_pares": 3,
+      "train_dias": 5,
+      "test_dias": 3,
+      "factor_mediano_viirs_sobre_modis_EXPLORATORIO": 0.8336,
+      "error_relativo_mediano_test": 0.5406,
+      "correlacion_test": -0.0706,
+      "tiene_muestra_minima": "no",
+      "supera_criterio_exploratorio": "no",
+      "advertencia": "diagnostico_exploratorio_NO_calibracion_historica"
+    },
+    {
+      "modis": "Aqua",
+      "viirs": "S-NPP",
+      "dia_noche": "D",
+      "pares_frp_validos": 3,
+      "dias_distintos": 3,
+      "train_pares": 2,
+      "test_pares": 1,
+      "train_dias": 2,
+      "test_dias": 1,
+      "factor_mediano_viirs_sobre_modis_EXPLORATORIO": 2.1745,
+      "error_relativo_mediano_test": 2.951,
+      "correlacion_test": "",
+      "tiene_muestra_minima": "no",
+      "supera_criterio_exploratorio": "no",
+      "advertencia": "diagnostico_exploratorio_NO_calibracion_historica"
+    },
+    {
+      "modis": "Aqua",
+      "viirs": "S-NPP",
+      "dia_noche": "N",
+      "pares_frp_validos": 3,
+      "dias_distintos": 2,
+      "train_pares": 2,
+      "test_pares": 1,
+      "train_dias": 1,
+      "test_dias": 1,
+      "factor_mediano_viirs_sobre_modis_EXPLORATORIO": 1.0316,
+      "error_relativo_mediano_test": 0.4461,
+      "correlacion_test": "",
+      "tiene_muestra_minima": "no",
+      "supera_criterio_exploratorio": "no",
+      "advertencia": "diagnostico_exploratorio_NO_calibracion_historica"
+    }
+  ],
+  "thermal_relations": [
+    {
+      "modis": "Aqua",
+      "viirs": "NOAA-20",
+      "dia_noche": "D",
+      "banda": "11um",
+      "pares": 11,
+      "pearson_exploratoria": 0.8593,
+      "mediana_viirs_menos_modis_k": 0.43,
+      "nota": "no_conversion_directa_entre_bandas"
+    },
+    {
+      "modis": "Aqua",
+      "viirs": "NOAA-20",
+      "dia_noche": "D",
+      "banda": "4um",
+      "pares": 11,
+      "pearson_exploratoria": -0.1148,
+      "mediana_viirs_menos_modis_k": 25.28,
+      "nota": "no_conversion_directa_entre_bandas"
+    },
+    {
+      "modis": "Aqua",
+      "viirs": "NOAA-20",
+      "dia_noche": "N",
+      "banda": "11um",
+      "pares": 1,
+      "pearson_exploratoria": "",
+      "mediana_viirs_menos_modis_k": -1.43,
+      "nota": "no_conversion_directa_entre_bandas"
+    },
+    {
+      "modis": "Aqua",
+      "viirs": "NOAA-20",
+      "dia_noche": "N",
+      "banda": "4um",
+      "pares": 1,
+      "pearson_exploratoria": "",
+      "mediana_viirs_menos_modis_k": 16.11,
+      "nota": "no_conversion_directa_entre_bandas"
+    },
+    {
+      "modis": "Aqua",
+      "viirs": "S-NPP",
+      "dia_noche": "D",
+      "banda": "11um",
+      "pares": 3,
+      "pearson_exploratoria": 0.4175,
+      "mediana_viirs_menos_modis_k": 2.21,
+      "nota": "no_conversion_directa_entre_bandas"
+    },
+    {
+      "modis": "Aqua",
+      "viirs": "S-NPP",
+      "dia_noche": "D",
+      "banda": "4um",
+      "pares": 3,
+      "pearson_exploratoria": 0.9672,
+      "mediana_viirs_menos_modis_k": 30.9075,
+      "nota": "no_conversion_directa_entre_bandas"
+    },
+    {
+      "modis": "Aqua",
+      "viirs": "S-NPP",
+      "dia_noche": "N",
+      "banda": "11um",
+      "pares": 3,
+      "pearson_exploratoria": -0.5703,
+      "mediana_viirs_menos_modis_k": -1.56,
+      "nota": "no_conversion_directa_entre_bandas"
+    },
+    {
+      "modis": "Aqua",
+      "viirs": "S-NPP",
+      "dia_noche": "N",
+      "banda": "4um",
+      "pares": 3,
+      "pearson_exploratoria": 0.991,
+      "mediana_viirs_menos_modis_k": 13.33,
+      "nota": "no_conversion_directa_entre_bandas"
+    }
+  ],
+  "limitations": "no observational coverage masks; no historical calibration; 1 cell-day != 1 fire"
+}

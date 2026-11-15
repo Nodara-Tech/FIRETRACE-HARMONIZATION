@@ -1,0 +1,35 @@
+{
+  "version": "3.2-P1",
+  "signature": {
+    "version": "3.2-P1",
+    "files": [
+      [
+        "armonizacion_celdas_dia_v2.csv",
+        34754,
+        1794761065441420800
+      ],
+      [
+        "coincidencias_pasadas_frp.csv",
+        4357,
+        1794761065465675300
+      ],
+      [
+        "diagnostico_v2.json",
+        5015,
+        1794761065471683600
+      ]
+    ]
+  },
+  "time_window_minutes": 30.0,
+  "geometry_for_nearby": "cuadricula_v2",
+  "matching_source": "coincidencias_pasadas_frp.csv",
+  "daily_both": 34,
+  "daily_both_with_nearby_pair": 17,
+  "daily_both_without_nearby_pair": 17,
+  "only_modis": 46,
+  "only_viirs": 660,
+  "cell_days": 740,
+  "candidate_pairs_in_linked_cells": 18,
+  "unlinked_pair_reasons": {},
+  "notice": "Indicadores exploratorios de correspondencia, NO porcentajes de confianza ni incendios confirmados. H3 solo agrupa por día."
+}

@@ -1,0 +1,26 @@
+NODARA TECH — PARCHE V3.5 (PROBLEMA 4)
+
+1. Detén el servidor anterior desde la terminal de VS Code con Ctrl+C.
+2. Extrae NodaraTech_PARCHE_V3_5_PROBLEMA4.zip.
+3. Copia TODOS los archivos y carpetas que hay dentro del parche a:
+   Descargas\NodaraTech_Observatorio_V3_H3\
+   Debe ser la carpeta que contiene requirements.txt y aplicacion\.
+4. Acepta combinar carpetas y reemplazar archivos. NO ELIMINES los
+   directorios datos, resultados ni cache de tu instalación actual.
+5. Abre esa misma carpeta en VS Code y ejecuta:
+
+   py -m pip install -r requirements.txt
+   py aplicacion\pruebas_problema4.py
+   py aplicacion\pruebas_problema4_reales.py
+   py aplicacion\visor_incendios.py
+
+6. Abre http://127.0.0.1:8765 y presiona Ctrl+F5.
+7. Baja al panel «Auditoría espacial controlada · v3.5» y pulsa
+   «Comparar área y efecto de bordes».
+8. Compara los tres escenarios, la columna «Parejas internas» y la columna
+   «Parejas con vecindad». Los rangos son variaciones al desplazar la cuadrícula.
+
+NO cambia tus resultados P1, P2 y P3. Los nuevos CSV quedan en la subcarpeta
+comparacion_espacial_v3_5 junto a los resultados normalizados que uses.
+Los rangos por desplazamiento NO son intervalos de confianza.
+La comparación mide estabilidad geométrica, NO exactitud científica.

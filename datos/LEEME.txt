@@ -1,0 +1,1 @@
+Aquí se guardan los archivos FIRMS descargados. Los archivos de ~1,5GB originales se importan con IMPORTAR_DATOS_V3_6.py.

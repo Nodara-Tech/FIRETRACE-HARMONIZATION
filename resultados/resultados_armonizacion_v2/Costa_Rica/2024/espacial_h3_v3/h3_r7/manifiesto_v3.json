@@ -1,0 +1,39 @@
+{
+  "signature": {
+    "bytes": 2095283,
+    "mtime_ns": 1794757789258922800,
+    "resolution": 7,
+    "quality": "todas",
+    "motor": "3.0"
+  },
+  "pais": "Costa Rica",
+  "anio": 2024,
+  "resolucion_h3": 7,
+  "area_media_hexagono_km2": 5.161293359717191,
+  "cuadricula_v2_km": 2.0,
+  "area_nominal_cuadricula_km2": 4.0,
+  "calidad": "todas",
+  "leidos": {
+    "total": 13941,
+    "included": 13836
+  },
+  "h3_celdas_dia": {
+    "ambos": 523,
+    "solo_modis": 400,
+    "solo_viirs": 4887,
+    "union": 5810,
+    "modis": 923,
+    "viirs": 5410
+  },
+  "cuadricula_celdas_dia": {
+    "solo_viirs": 5083,
+    "ambos": 527,
+    "solo_modis": 413
+  },
+  "vecindad_h3": {
+    "solo_modis_con_vecino_viirs": 170,
+    "solo_viirs_con_vecino_modis": 414
+  },
+  "pares_frp_v2": 370,
+  "advertencia": "Los valores son conteos de celdas CON detección, no de incendios, área quemada, ni exactitud de sensores. H3 y cuadrícula tienen distinta área y geometría. Las coincidencias vecinas no están verificadas temporalmente. No hay máscaras de nubosidad/cobertura ni calibración histórica."
+}

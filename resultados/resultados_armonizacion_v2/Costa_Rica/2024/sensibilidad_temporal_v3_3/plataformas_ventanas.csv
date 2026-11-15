@@ -1,0 +1,17 @@
+﻿ventana_min,modis,viirs,dia_noche,n_pares,mediana_delta_min,min_delta_min,max_delta_min
+15,Aqua,NOAA-20,D,87,6.0,1.0,15.0
+15,Aqua,NOAA-20,N,16,4.0,0.0,12.0
+15,Aqua,S-NPP,D,62,3.0,0.0,13.0
+15,Aqua,S-NPP,N,2,2.0,0.0,4.0
+30,Aqua,NOAA-20,D,188,18.5,1.0,30.0
+30,Aqua,NOAA-20,N,23,7.0,0.0,29.0
+30,Aqua,S-NPP,D,155,23.0,0.0,30.0
+30,Aqua,S-NPP,N,4,15.0,0.0,30.0
+60,Aqua,NOAA-20,D,245,23.0,1.0,58.0
+60,Aqua,NOAA-20,N,26,8.5,0.0,53.0
+60,Aqua,S-NPP,D,242,27.0,0.0,60.0
+60,Aqua,S-NPP,N,19,38.0,0.0,53.0
+120,Aqua,NOAA-20,D,294,26.0,1.0,110.0
+120,Aqua,NOAA-20,N,30,11.0,0.0,103.0
+120,Aqua,S-NPP,D,279,27.0,0.0,113.0
+120,Aqua,S-NPP,N,22,44.0,0.0,112.0

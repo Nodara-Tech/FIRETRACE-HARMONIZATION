@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+  <meta name="theme-color" content="#071320"/>
+  <title>Nodara Tech | Observatorio de incendios</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+  <link rel="preconnect" href="https://unpkg.com"/>
+  <link href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet"/>
+  <link href="/styles.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="app-shell">
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark">N<span class="flame-dot">•</span></span><span><b>NODARA</b><small>FIRE OBSERVATORY</small></span></div>
+    <div class="top-center"><span class="online-dot"></span><span>NASA FIRMS + GIBS</span><span class="tiny-separator">/</span><span class="header-tag">Armonización v3.6 · Calidad y sensibilidad</span></div>
+    <div class="top-actions"><button id="menuBtn" class="icon-btn menu-toggle" title="Abrir o cerrar filtros">☰</button><span id="regionHeader" class="header-place">Cargando región…</span><span class="avatar">NT</span></div>
+  </header>
+
+  <div class="body-shell">
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar-head"><span class="eyebrow">ESPACIO DE TRABAJO</span><h1>Fire explorer</h1><p>Actividad térmica MODIS y VIIRS, en una línea de tiempo.</p></div>
+      <section class="control-section">
+        <div class="control-title"><span>01</span> Región y período</div>
+        <label for="datasetSelect">Conjunto procesado</label>
+        <select id="datasetSelect" aria-label="Conjunto procesado"></select>
+        <label for="searchPlace">Buscar región o coordenadas</label>
+        <div class="search-line"><input id="searchPlace" placeholder="California o 10.2, -84.5"/><button id="searchBtn" title="Buscar">⌕</button></div>
+        <p class="help">Busca entre las regiones disponibles o mueve el mapa a latitud, longitud.</p>
+      </section>
+      <section class="control-section">
+        <div class="control-title"><span>02</span> Visualización</div>
+        <div class="segmented" role="group" aria-label="Modo de mapa">
+          <button data-mode="points" class="is-active">Detecciones</button><button data-mode="cells">Zonas</button><button data-mode="pairs">Cruces</button>
+        </div>
+        <p id="modeHint" class="help">Centros de píxeles MODIS y VIIRS.</p>
+        <label for="spatialMethod">Método espacial (cambia la geometría del mapa)</label>
+        <select id="spatialMethod" aria-label="Método espacial">
+          <option value="square">Cuadrícula v2 (según conjunto)</option>
+          <option value="h3">H3 hexagonal (resolución 7)</option>
+        </select>
+        <p class="help">Al elegir el método, el mapa abre automáticamente «Zonas»: cuadrados v2 o hexágonos H3 r7 (≈ 5,16 km² de media). Los puntos originales no cambian.</p>
+        <label for="temporalWindow">Ventana de coincidencia por pasada (v2 y H3)</label>
+        <select id="temporalWindow" aria-label="Ventana temporal de emparejamiento">
+          <option value="15">15 minutos · estricta</option>
+          <option value="30" selected>30 minutos · referencia v3.2</option>
+          <option value="60">60 minutos · exploratoria</option>
+          <option value="120">120 minutos · exploratoria amplia</option>
+        </select>
+        <p class="help">Cambia los cruces y la clasificación temporal del método espacial elegido (cuadrados v2 o hexágonos H3). Los puntos originales no cambian. Una ventana mayor no implica mejor precisión.</p>
+        <div class="caption-row"><label>Satélites</label><span>Fuentes originales</span></div>
+        <label class="sensor-row"><span class="dot modis"></span><span>MODIS Terra / Aqua</span><input type="checkbox" class="sensorCheck" value="modis" checked/></label>
+        <label class="sensor-row"><span class="dot snpp"></span><span>VIIRS S-NPP</span><input type="checkbox" class="sensorCheck" value="viirs-snpp" checked/></label>
+        <label class="sensor-row"><span class="dot noaa"></span><span>VIIRS NOAA-20</span><input type="checkbox" class="sensorCheck" value="viirs-jpss1" checked/></label>
+        <div class="select-row"><span>Período del día</span><select id="daynight"><option value="ambos">Día y noche</option><option value="D">Diurno</option><option value="N">Nocturno</option></select></div>
+        <label class="sensor-row subtle-row"><span>Solo presuntos fuegos vegetales (type=0)</span><input id="type0" type="checkbox" checked/></label>
+      </section>
+      <section class="control-section">
+        <div class="control-title"><span>03</span> Fondo cartográfico</div>
+        <div class="segmented two" role="group" aria-label="Mapa de fondo"><button class="is-active" data-base="streets">Calles</button><button data-base="nasa">NASA satelital</button></div>
+        <p class="help">La vista satelital NASA se sincroniza con la fecha elegida. Requiere Internet.</p>
+      </section>
+      <section class="control-section process-section">
+        <details id="processDetails"><summary><span>04</span> Procesar otro estado de EE. UU.</summary>
+        <p class="help">Descarga ZIP oficiales, separa el estado y ejecuta el motor v2 más H3 v3 automáticamente. Puede ocupar mucho espacio.</p>
+        <label for="processState">Estado</label><select id="processState"></select>
+        <label for="processYears">Años (máximo tres)</label><input id="processYears" value="2024" placeholder="2024 o 2015,2020,2024"/>
+        <button id="processBtn" class="primary-btn">Descargar y procesar</button>
+        <p id="processStatus" class="help">No hay procesamiento activo.</p>
+        <pre id="processLog" class="process-log" hidden></pre>
+        </details>
+      </section>
+      <div class="sidebar-footer">Nodara Tech · Space Apps 2026<br/><a href="https://firms.modaps.eosdis.nasa.gov/" target="_blank" rel="noopener">Datos NASA FIRMS</a> · <a href="https://worldview.earthdata.nasa.gov/" target="_blank" rel="noopener">Worldview</a></div>
+    </aside>
+
+    <main class="workspace">
+      <div class="workspace-top">
+        <div><div class="breadcrumb">OBSERVATORIO / <span id="crumbRegion">REGIÓN</span></div><h2 id="viewTitle">Actividad de incendios</h2><p id="viewSubtitle">Puntos satelitales y celdas-día combinadas</p></div>
+        <div class="workspace-buttons"><button id="resetMap" class="secondary-btn">⌖ Centrar mapa</button><button id="exportCsv" class="secondary-btn">↓ Exportar día</button></div>
+      </div>
+      <div class="metrics">
+        <div class="metric"><span>DETECCIONES MOSTRADAS</span><strong id="statPoints">—</strong><small>Registros en la fecha seleccionada</small></div>
+        <div class="metric"><span>CELDAS-DÍA CON ACTIVIDAD</span><strong id="statCells">—</strong><small>Unidades espaciales-día del método seleccionado</small></div>
+        <div class="metric"><span>MODIS Y VIIRS</span><strong id="statBoth">—</strong><small>Celdas con detección de ambos</small></div>
+        <div class="metric"><span>PARES CANDIDATOS</span><strong id="statPairs">—</strong><small id="pairStatNote">Relaciones próximas, no confirmadas</small></div>
+      </div>
+      <div class="main-panels">
+        <section class="map-card">
+          <div class="map-card-head"><div class="map-title-line"><b>Mapa interactivo</b><span id="dateChip" class="date-chip">—</span><span id="geometryBadge" class="geometry-badge">Puntos originales</span></div><div class="map-head-actions"><button id="toggleGeometry" type="button" class="geometry-switch" title="Cambiar geometría espacial y mostrar zonas">Ver hexágonos H3</button><div class="map-status"><span class="small-live"></span><span id="mapCount">Preparando visor</span></div></div></div>
+          <div class="map-surface">
+            <div id="map" role="application" aria-label="Mapa satelital e incendios"></div>
+            <div id="mapMessage" class="map-message" hidden></div>
+            <div class="map-legend" id="legend"><span><i class="dot modis"></i>MODIS</span><span><i class="dot snpp"></i>VIIRS S-NPP</span><span><i class="dot noaa"></i>VIIRS NOAA-20</span></div>
+          </div>
+          <div class="map-note" id="mapNote">Los puntos son píxeles detectados, no incendios delimitados.</div>
+        </section>
+        <aside class="insight-card">
+          <div class="insight-head"><span class="eyebrow">ANÁLISIS TEMPORAL</span><h3>Actividad mensual</h3><p>Conteo de celdas-día por mes; indicador exploratorio.</p></div>
+          <div id="monthlyChart" class="monthly-chart"></div>
+          <div class="insight-divider"></div>
+          <h3>Balance de observaciones</h3>
+          <div class="distribution"><div id="distributionBar" class="distribution-bar"></div><div class="dist-labels"><span><i class="dot both"></i> Ambos: <b id="bothCells">—</b></span><span><i class="dot modis"></i> Solo MODIS: <b id="onlyModis">—</b></span><span><i class="dot snpp"></i> Solo VIIRS: <b id="onlyViirs">—</b></span></div></div>
+          <div class="insight-divider"></div>
+          <h3>¿Coinciden también en el tiempo?</h3>
+          <p class="science-note">El método elegido distingue coincidencias diarias y pasadas cercanas. H3 también identifica pares entre hexágonos vecinos, sin fusionarlos. No confirma incendios individuales.</p>
+          <div id="concordanceSummary" class="concordance-summary">Calculando concordancia temporal...</div>
+          <p id="concordanceMethodNote" class="science-note">H3 diferencia pasadas en el mismo hexágono y entre hexágonos vecinos, con ventana y distancia de huellas aproximada.</p>
+          <div class="insight-divider"></div>
+          <h3>Sensibilidad de la ventana temporal</h3>
+          <p class="science-note">La tabla refleja el método seleccionado: H3 o cuadrícula v2. Cada geometría usa su emparejador; las cuatro ventanas son escenarios, no niveles de confianza.</p>
+          <div id="temporalSensitivity" class="temporal-sensitivity">Calculando escenarios...</div>
+          <p id="temporalSensitivityNote" class="science-note">El 30 min predeterminado es un valor experimental, no un óptimo validado.</p>
+          <div class="insight-divider"></div>
+          <h3>Comparación de métodos espaciales</h3>
+          <p class="science-note">Mismo día y registros, dos formas de agrupar los centros de píxel.</p>
+          <div class="spatial-compare" id="spatialComparison">Preparando comparación...</div>
+          <p class="science-note">H3 r7 (≈ 5,16 km²) y cuadrícula v2 (área variable según configuración): geometrías distintas; sus conteos no miden precisión.</p>
+          <div class="insight-divider"></div>
+          <h3>Auditoría espacial controlada · v3.5</h3>
+          <p class="science-note">Compara H3 r7 con cuadrados de 2 km y cuadrados de área equivalente a H3. Usa el mismo motor de emparejamiento y la ventana temporal seleccionada. Repite cada cuadrícula con 16 orígenes distintos.</p>
+          <button id="runSpatialAudit" type="button" class="audit-btn">Comparar área y efecto de bordes</button>
+          <div id="spatialAudit" class="audit-results" role="status" aria-live="polite">Este análisis no se calcula automáticamente. Pulsa el botón para analizar el conjunto y la ventana seleccionados.</div>
+          <p class="science-note">Se muestran por separado parejas en la misma celda y parejas con vecinos. Un hexágono tiene seis vecinos inmediatos; un cuadrado, ocho. Los conteos NO son precisión.</p>
+          <div class="insight-divider"></div>
+          <h3>Auditoría de calidad de detecciones · v3.6</h3>
+          <p class="science-note">Estudia por separado las categorías originales: MODIS 0–100 y VIIRS baja (l), nominal (n) o alta (h). No son probabilidades comparables. Filtra antes de recalcular las pasadas y los cruces en <b>cuadrados y H3</b>.</p>
+          <button id="runQualityAudit" type="button" class="audit-btn">Comparar seis escenarios de confianza</button>
+          <div id="qualityAudit" class="audit-results" role="status" aria-live="polite">Selecciona una fecha y ventana; pulsa el botón para comparar el año y el día. El mapa principal conserva su escenario original. La auditoría utiliza todos los satélites, día y noche, con type=0 fijo.</div>
+          <p class="science-note">Los escenarios son análisis de sensibilidad, no «porcentajes de certeza». Excluir datos puede retirar incendios reales y cambiar qué pasadas se emparejan.</p>
+          <div class="insight-divider"></div>
+          <h3>Qué representa esta información</h3>
+          <p class="science-note">La actividad armonizada aquí es <b>presencia por celda y fecha</b>, no cantidad exacta de incendios. Aún no elimina sesgos de nubosidad, frecuencia de paso o sensibilidad.</p>
+          <button id="openSources" class="text-link">Ver metodología y fuentes ↗</button>
+        </aside>
+      </div>
+      <div class="timeline-card">
+        <div class="timeline-head"><div><span class="eyebrow">LÍNEA DE TIEMPO</span><h3 id="selectedDay">—</h3></div><div class="timeline-tools"><label class="active-toggle"><input type="checkbox" id="skipEmpty" checked/> Saltar días sin detecciones</label><input type="date" id="dateInput"/></div></div>
+        <div class="timeline-controls"><button id="prevDay" title="Día anterior">‹</button><button id="playDay" class="play-btn" title="Reproducir días">▶</button><button id="nextDay" title="Día siguiente">›</button><input id="daySlider" type="range" min="0" max="365" step="1" value="0" aria-label="Fecha de actividad"/><span id="slidePos" class="slider-caption">—</span></div>
+        <div id="timelineSparks" class="timeline-sparks" aria-hidden="true"></div>
+      </div>
+      <p class="footer-disclaimer" id="footerDisclaimer">Fuente: NASA FIRMS, procesamiento experimental Nodara Tech. Ningún punto representa automáticamente un incendio individual.</p>
+    </main>
+  </div>
+</div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="/app.js"></script>
+</body>
+</html>

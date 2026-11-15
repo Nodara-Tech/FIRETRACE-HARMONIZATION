@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <meta name="theme-color" content="#151f39"/>
+  <title>FIRETRACE HARMONIZATION | Nodara Tech</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+  <link rel="preconnect" href="https://unpkg.com"/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <link rel="stylesheet" href="/firetrace.css"/>
+</head>
+<body>
+<div id="firetraceApp" class="ft-app is-home">
+  <header class="ft-header">
+    <div class="ft-brand"><img src="/firetrace-logo.png" alt="Firetrace emblem"/><h1>FIRETRACE HARMONIZATION</h1></div>
+    <div class="ft-header-right"><div class="ft-clock" aria-label="Current time"><span>◷</span><time id="ftClock">--:--:--</time></div>
+      <button class="ft-hamburger" id="ftMenuBtn" aria-label="Navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      <nav id="ftMenu" class="ft-menu" hidden>
+        <button id="ftHome" type="button">HOME · Satellite Map</button>
+        <button id="ftHarmonization" type="button">HARMONIZATION · Statistics</button>
+        <button id="ftExport" type="button">DOWNLOAD PERIOD CSV</button>
+      </nav>
+    </div>
+  </header>
+
+  <div class="ft-main">
+    <aside class="ft-sidebar" id="ftSidebar">
+      <div class="ft-sidebar-inner">
+        <div class="ft-filter-heading"><b><span class="ft-filter-icon">▽</span> Search &amp; Filters</b><button id="ftClear" type="button">Clear all</button></div>
+        <div class="ft-field">
+          <label>Date range</label>
+          <button class="ft-select ft-date-toggle" id="ftDateToggle" type="button"><span class="ft-date-icon">Date</span><span id="ftDateText">Select dates</span><span class="orange-chevron">⌄</span></button>
+          <div class="ft-date-popover" id="ftDatePopup" hidden>
+            <label for="ftFrom">From</label><input type="date" id="ftFrom"/>
+            <label for="ftTo">To</label><input type="date" id="ftTo"/>
+            <button class="ft-mini-apply" id="ftDateApply" type="button">Apply date range</button>
+            <small>Available within the selected processed year.</small>
+          </div>
+        </div>
+        <div class="ft-field ft-location-field">
+          <label>Location</label>
+          <div class="ft-segmented"><button class="active" id="ftCountryBtn" type="button">Region</button><button id="ftCoordsBtn" type="button">Coordinates</button></div>
+          <div id="ftCountryControls">
+            <label for="ftState">Select Region</label>
+            <div class="ft-combo"><span>Region</span><select id="ftState"><option>Loading regions…</option></select><i>⌄</i></div>
+            <div class="ft-region-card"><span class="ft-state-outline" id="ftStateIcon">♧</span><div><div id="ftRegionName">California</div><span id="ftRegionArea">Area: 423,970 km²</span></div></div>
+          </div>
+          <div id="ftCoordsControls" hidden>
+            <label for="ftCoordLat">Latitude</label><input id="ftCoordLat" type="number" step="any" min="-90" max="90" placeholder="Latitude of selected region"/>
+            <label for="ftCoordLon">Longitude</label><input id="ftCoordLon" type="number" step="any" min="-180" max="180" placeholder="Longitude of selected region"/>
+            <label for="ftRadius">Radius (km)</label><input id="ftRadius" type="number" min="1" max="500" value="80"/>
+          </div>
+          <button id="ftAdditionalToggle" class="ft-outline-btn" type="button" aria-expanded="false">Additional Filters <span>›</span></button>
+          <div id="ftExtra" class="ft-extra" hidden>
+            <label for="ftOtherDataset">Processed dataset</label><select id="ftOtherDataset"></select>
+            <label for="ftMethod">Spatial aggregation</label><select id="ftMethod"><option value="square">Regular square grid v2</option><option value="h3">H3 hexagons · resolution 7</option></select>
+            <label for="ftMode">Map layer</label><select id="ftMode"><option value="points">Satellite detections</option><option value="cells">Harmonized cells</option></select>
+            <label for="ftWindow">Pass proximity window</label><select id="ftWindow"><option value="15">15 min</option><option value="30" selected>30 min</option><option value="60">60 min</option><option value="120">120 min</option></select>
+            <div class="ft-source-header">Satellite sources</div>
+            <label class="ft-checkbox"><input type="checkbox" class="ft-source" value="modis" checked> MODIS Terra / Aqua</label>
+            <label class="ft-checkbox"><input type="checkbox" class="ft-source" value="viirs-snpp" checked> VIIRS S-NPP</label>
+            <label class="ft-checkbox"><input type="checkbox" class="ft-source" value="viirs-jpss1" checked> VIIRS NOAA-20</label>
+            <label for="ftDayNight">Time of day</label><select id="ftDayNight"><option value="ambos">Day and night</option><option value="D">Day</option><option value="N">Night</option></select>
+            <label class="ft-checkbox"><input type="checkbox" id="ftVeg" checked> Presumed vegetation fires (type=0)</label>
+            <label for="ftBase">Map background</label><select id="ftBase"><option value="satellite">Satellite imagery</option><option value="nasa">NASA GIBS for date</option><option value="streets">OpenStreetMap</option></select>
+            <div class="ft-footnote">Filters affect summary and visible records. Overlapping sensors do not confirm an individual fire.</div>
+          </div>
+          <button class="ft-search-btn" id="ftSearch" type="button"><span>⌕</span> Search Detections</button>
+        </div>
+        <div id="ftSidebarMessage" class="ft-sidebar-message" role="status"></div>
+        <div class="ft-stat-stack" id="ftStatStack">
+          <div class="ft-stat"><span class="ft-stat-icon">♨</span><div><strong id="ftDetections">—</strong><small>Detections<br/>(selected filters)</small></div></div>
+          <div class="ft-stat"><span class="ft-stat-icon">◇</span><div><strong id="ftMultisource">—</strong><small>Multi-source locations<br/>(whole period)</small></div></div>
+          <div class="ft-stat"><span class="ft-stat-icon">◉</span><div><strong id="ftCooccurrence">—</strong><small>Co-occurrence<br/>(shared cell-days %)</small></div></div>
+          <div class="ft-stat"><span class="ft-stat-icon">◉</span><div><strong id="ftCellDays">—</strong><small>Active cell-days</small></div></div>
+          <div class="ft-footnote" title="Same location during the period is not necessarily the same day.">Multi-source locations = both sensor families detected in the same spatial cell during the period. Co-occurrence = shared cell-days ÷ active cell-days. Neither measures model confidence.</div>
+        </div>
+      </div>
+    </aside>
+    <button type="button" class="ft-collapse" id="ftCollapse" aria-label="Collapse filters">›</button>
+    <div class="ft-content">
+      <section class="ft-map-panel">
+        <div id="ftMap" role="application" aria-label="Satellite fire detection map"></div>
+        <div class="ft-map-message" id="ftMapMessage" hidden></div>
+        <div class="ft-map-overlay" id="ftMapOverlay"><span id="ftLayerLabel">Satellite detections</span><span id="ftSampleLabel"></span></div>
+        <button class="ft-locate" id="ftLocate" aria-label="Center map">⌖</button>
+      </section>
+      <section class="ft-analysis" id="ftAnalysis">
+        <div class="ft-chart-card"><h2 id="ftChartTitle">Daily Detections · 7-day average</h2><div class="ft-plot-wrap"><svg id="ftLineChart" viewBox="0 0 700 215" preserveAspectRatio="none" role="img" aria-label="Daily detections by satellite"></svg></div><div class="ft-chart-legend"><span class="ft-legend-modis">● MODIS</span><span class="ft-legend-viirs">● VIIRS</span><span class="ft-legend-total">● Total detections</span></div></div>
+        <div class="ft-heat-card"><h2>Activity Heatmap</h2><p id="ftHeatSubtitle">Detections per day</p><div class="ft-heat-body"><div class="ft-heat-months" id="ftHeatMonths"></div><div class="ft-heat-grid" id="ftHeatGrid"></div></div><div class="ft-heat-legend"><span>Fewer<br/>Detections</span><div class="ft-gradient"></div><span>More<br/>Detections</span></div><div class="ft-heat-total">Total for the period <strong id="ftHeatTotal">— detections</strong></div></div>
+      </section>
+    </div>
+  </div>
+</div>
+<div class="ft-toast" id="ftToast" role="status"></div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="/firetrace.js?v=3.6.1"></script>
+</body>
+</html>

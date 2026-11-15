@@ -1,0 +1,13 @@
+﻿escenario,etiqueta,metodo,ventana_min,registros_type0,registros_modis,registros_viirs,retencion_registros_pct,celdas_activas,ambos,solo_modis,solo_viirs,ambos_con_pareja,ambos_solo_fecha,parejas,pares_misma_celda,pares_vecinos,retencion_parejas_pct,cambio_celdas_compartidas_pct
+todas,Sin filtro de confianza,square,30,1169,94,1075,100.0,740,34,46,660,17,17,18,18,0,100.0,0.0
+todas,Sin filtro de confianza,h3,30,1169,94,1075,100.0,740,34,46,660,17,17,20,18,2,100.0,0.0
+viirs_nh,VIIRS nominal/alta,square,30,1044,94,950,89.31,642,32,48,562,17,15,18,18,0,100.0,-5.88
+viirs_nh,VIIRS nominal/alta,h3,30,1044,94,950,89.31,642,32,48,562,17,15,20,18,2,100.0,-5.88
+modis50,MODIS >=50,square,30,1135,60,1075,97.09,719,27,25,667,14,13,15,15,0,83.33,-20.59
+modis50,MODIS >=50,h3,30,1135,60,1075,97.09,719,27,25,667,15,12,17,15,2,85.0,-20.59
+ambos50,MODIS >=50 + VIIRS n/h,square,30,1010,60,950,86.4,621,25,27,569,14,11,15,15,0,83.33,-26.47
+ambos50,MODIS >=50 + VIIRS n/h,h3,30,1010,60,950,86.4,621,25,27,569,15,10,17,15,2,85.0,-26.47
+modis80,MODIS >=80,square,30,1084,9,1075,92.73,696,5,2,689,3,2,3,3,0,16.67,-85.29
+modis80,MODIS >=80,h3,30,1084,9,1075,92.73,696,5,2,689,3,2,3,3,0,15.0,-85.29
+ambos80,MODIS >=80 + VIIRS n/h,square,30,959,9,950,82.04,596,5,2,589,3,2,3,3,0,16.67,-85.29
+ambos80,MODIS >=80 + VIIRS n/h,h3,30,959,9,950,82.04,596,5,2,589,3,2,3,3,0,15.0,-85.29

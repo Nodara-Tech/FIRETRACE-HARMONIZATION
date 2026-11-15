@@ -1,0 +1,4 @@
+pyshp>=2.3,<3
+
+# H3: indexación global hexagonal (v4 de la API)
+h3>=4.2,<5

@@ -1,0 +1,79 @@
+{
+  "version": "3.3-P2",
+  "signature": "737ebba9d2bf9de2",
+  "parameters": {
+    "grid_km": 2.0,
+    "quality": "todas",
+    "pass_span_min": 12
+  },
+  "windows": [
+    15,
+    30,
+    60,
+    120
+  ],
+  "summary": [
+    {
+      "ventana_min": 15,
+      "parejas_candidatas": 9,
+      "parejas_vinculadas_celda_dia": 9,
+      "celdas_dia_ambos": 34,
+      "celdas_con_pareja": 9,
+      "celdas_solo_dia": 25,
+      "proporcion_con_pareja": 0.2647,
+      "ic_bootstrap_dias_inf": 0.0909,
+      "ic_bootstrap_dias_sup": 0.4167,
+      "parejas_cruzan_medianoche": 0,
+      "advertencia": "No representa precisión ni probabilidad de incendio"
+    },
+    {
+      "ventana_min": 30,
+      "parejas_candidatas": 18,
+      "parejas_vinculadas_celda_dia": 18,
+      "celdas_dia_ambos": 34,
+      "celdas_con_pareja": 17,
+      "celdas_solo_dia": 17,
+      "proporcion_con_pareja": 0.5,
+      "ic_bootstrap_dias_inf": 0.3429,
+      "ic_bootstrap_dias_sup": 0.6667,
+      "parejas_cruzan_medianoche": 0,
+      "advertencia": "No representa precisión ni probabilidad de incendio"
+    },
+    {
+      "ventana_min": 60,
+      "parejas_candidatas": 25,
+      "parejas_vinculadas_celda_dia": 25,
+      "celdas_dia_ambos": 34,
+      "celdas_con_pareja": 21,
+      "celdas_solo_dia": 13,
+      "proporcion_con_pareja": 0.6176,
+      "ic_bootstrap_dias_inf": 0.4419,
+      "ic_bootstrap_dias_sup": 0.8,
+      "parejas_cruzan_medianoche": 0,
+      "advertencia": "No representa precisión ni probabilidad de incendio"
+    },
+    {
+      "ventana_min": 120,
+      "parejas_candidatas": 34,
+      "parejas_vinculadas_celda_dia": 34,
+      "celdas_dia_ambos": 34,
+      "celdas_con_pareja": 25,
+      "celdas_solo_dia": 9,
+      "proporcion_con_pareja": 0.7353,
+      "ic_bootstrap_dias_inf": 0.5455,
+      "ic_bootstrap_dias_sup": 0.9091,
+      "parejas_cruzan_medianoche": 0,
+      "advertencia": "No representa precisión ni probabilidad de incendio"
+    }
+  ],
+  "records_processed": 1169,
+  "nearby_source": "motor v2 / make_passes / paired_passes",
+  "notes": [
+    "Mantiene filtros geométricos y reglas 1 a 1 por par de plataformas; solamente cambia el tope temporal.",
+    "30 min es la referencia existente, NO un óptimo validado.",
+    "Los intervalos bootstrap re-muestrean días; solo indican estabilidad interna, NO sensibilidad/especificidad.",
+    "Solo analiza la cuadrícula v2; H3 temporal queda pendiente (P3).",
+    "El tamaño de las ventanas altera la posibilidad de emparejar pasadas y NO la presencia diaria.",
+    "Cruces entre medianoches UTC no clasifican como celdas-día con pareja cercana según P1."
+  ]
+}

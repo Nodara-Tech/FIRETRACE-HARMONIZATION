@@ -1,0 +1,28 @@
+NODARA TECH - PARCHE V3.6 (PROBLEMA 5: CALIDAD DE DETECCIONES)
+
+1. Deten el visor anterior con Ctrl+C en VS Code.
+2. Extrae NodaraTech_PARCHE_V3_6_PROBLEMA5.zip.
+3. Copia EL CONTENIDO del ZIP a la raiz de tu proyecto habitual:
+   Descargas\NodaraTech_Observatorio_V3_H3\
+   (debe contener requirements.txt y la carpeta aplicacion).
+4. Acepta combinar carpetas y reemplazar archivos existentes.
+   NO BORRES datos, resultados ni cache.
+5. En la terminal PowerShell abierta en la raiz del proyecto, ejecuta:
+
+   py -m pip install -r requirements.txt
+   py aplicacion\pruebas_problema5.py
+   py aplicacion\pruebas_problema5_reales.py
+   py aplicacion\visor_incendios.py
+
+6. Navega a http://127.0.0.1:8765 y presiona Ctrl+F5.
+7. Abre Costa Rica 2024, fecha 31/03/2024 y ventana 30 min.
+8. Desplazate a «Auditoria de calidad de detecciones - v3.6» y pulsa
+   «Comparar seis escenarios de confianza».
+9. La tabla muestra parejas ANUALES para cuadrados y H3, con parejas
+   de la fecha seleccionada en letra pequena. El mapa principal permanece
+   SIN FILTROS; la tabla es un ensayo comparativo independiente.
+
+LA CONFIANZA MODIS NO ES PROBABILIDAD; VIIRS l/n/h NO ES LA MISMA ESCALA.
+Ni la reduccion de puntos ni la de parejas mide precision o falsos positivos.
+El H3 REAL fue probado previamente en la v3.5 del usuario; la prueba
+especifica v3.6 con H3 real debe ejecutarse en su Windows.

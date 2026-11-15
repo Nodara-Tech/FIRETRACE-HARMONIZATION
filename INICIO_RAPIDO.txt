@@ -1,0 +1,29 @@
+FIRETRACE HARMONIZATION — versión de entrega basada en Nodara Tech v3.6
+
+WINDOWS (desde la carpeta que contiene requirements.txt):
+  py -m pip install -r requirements.txt
+  py PRUEBAS_FIRETRACE.py
+  py aplicacion\visor_incendios.py
+
+MAC:
+  python3 -m venv .venv
+  source .venv/bin/activate
+  python -m pip install -r requirements.txt
+  python PRUEBAS_FIRETRACE.py
+  python aplicacion/visor_incendios.py
+
+ABRIR: http://127.0.0.1:8765
+
+MENU ☰ arriba a la derecha:
+  HOME -> pantalla HOME.pdf
+  HARMONIZATION -> pantalla Harmonization.pdf
+  ADVANCED OBSERVATORY -> motor original v3.6 / auditorías P1–P5
+  DOWNLOAD PERIOD CSV -> descargar datos agregados del periodo
+
+No se han inventado las cifras ilustrativas del diseño.
+
+ARCHIVOS DEL RESPALDO GRANDE (opcional):
+  py IMPORTAR_DATOS_V3_6.py "C:\RUTA\NodaraTech_Observatorio_V3_H3 (2).zip"
+  Reiniciar el visor luego de importar.
+
+Guía extendida: LEEME_FIRETRACE.md

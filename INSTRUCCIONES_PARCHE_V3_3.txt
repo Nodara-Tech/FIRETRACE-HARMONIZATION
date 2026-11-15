@@ -1,0 +1,19 @@
+NODARA TECH v3.3 - PARCHE PROBLEMA 2
+
+1) Deten el visor anterior con Ctrl + C.
+2) Copia el CONTENIDO de este ZIP en la carpeta de tu proyecto v3.2,
+   donde esta requirements.txt; acepta combinar y reemplazar archivos.
+3) No borres ni copies encima tus datos/resultados/cache.
+4) Abre VS Code en la raiz del proyecto y ejecuta:
+
+   py aplicacion\pruebas_problema1.py
+   py aplicacion\pruebas_problema2.py
+   py aplicacion\visor_incendios.py
+
+5) En http://127.0.0.1:8765 pulsa Ctrl + F5.
+6) En el panel lateral cambia Ventana de coincidencia por pasada:
+   15, 30, 60 o 120 min. Revisa Zonas (Cuadricula v2), Cruces y
+   Sensibilidad de la ventana temporal en el panel derecho.
+
+NO SE CAMBIAN LOS DATOS NASA, H3 NI EL MOTOR DE FRP ORIGINAL.
+Ningun escenario implica probabilidades de fuego o exactitud validada.

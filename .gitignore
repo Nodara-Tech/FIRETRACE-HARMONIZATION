@@ -1,0 +1,10 @@
+cache/
+**/__pycache__/
+*.pyc
+*.part
+.DS_Store
+# Datos descargados: comentar las líneas de abajo si deseas versionarlos
+datos/datos_firms/
+datos/datos_firms_estados/
+datos/limites_geograficos/
+resultados/resultados_estados_unidos/

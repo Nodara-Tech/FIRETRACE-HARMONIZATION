@@ -1,0 +1,22 @@
+NODARA TECH — PARCHE v3.4 (PROBLEMA 3)
+
+1. Detén el servidor con Ctrl+C en la terminal de VS Code.
+2. Extrae el ZIP del PARCHE V3.4 y COPIA SU CONTENIDO en la carpeta donde
+   está requirements.txt de tu NodaraTech_Observatorio_V3_H3 actual.
+   Acepta combinar carpetas y reemplazar archivos.
+   No borres datos/, resultados/ ni cache/.
+3. En VS Code, terminal PowerShell, desde la raíz del proyecto:
+
+   py -m pip install -r requirements.txt
+   py aplicacion\pruebas_problema3.py
+   py aplicacion\pruebas_problema3_reales.py
+   py aplicacion\visor_incendios.py
+
+4. Abre http://127.0.0.1:8765 y haz Ctrl+F5.
+5. Costa Rica 2024, 31-mar, H3 hexagonal -> Zonas y Cruces.
+   La ventana 15/30/60/120 min cambia AHORA ambos métodos.
+6. Si algún test falla, envía captura de la terminal. Los conteos H3
+   temporales no se declaran definitivos sin ejecutar la biblioteca real.
+
+La prueba simulada comprueba software, NO precisión científica.
+Los archivos reales de detecciones y la cuadrícula v2-v3.3 permanecen intactos.

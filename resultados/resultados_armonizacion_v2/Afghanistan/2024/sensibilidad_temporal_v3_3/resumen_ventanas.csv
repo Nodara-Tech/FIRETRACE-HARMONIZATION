@@ -1,0 +1,5 @@
+﻿ventana_min,parejas_candidatas,parejas_vinculadas_celda_dia,celdas_dia_ambos,celdas_con_pareja,celdas_solo_dia,proporcion_con_pareja,ic_bootstrap_dias_inf,ic_bootstrap_dias_sup,parejas_cruzan_medianoche,advertencia
+15,9,9,34,9,25,0.2647,0.0909,0.4167,0,No representa precisión ni probabilidad de incendio
+30,18,18,34,17,17,0.5,0.3429,0.6667,0,No representa precisión ni probabilidad de incendio
+60,25,25,34,21,13,0.6176,0.4419,0.8,0,No representa precisión ni probabilidad de incendio
+120,34,34,34,25,9,0.7353,0.5455,0.9091,0,No representa precisión ni probabilidad de incendio

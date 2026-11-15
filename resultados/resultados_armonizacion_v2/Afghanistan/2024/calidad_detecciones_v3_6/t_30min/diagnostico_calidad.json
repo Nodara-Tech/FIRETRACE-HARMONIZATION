@@ -1,0 +1,362 @@
+{
+  "version": "3.6-P5-QUALITY-2",
+  "signature": "3c7f97fcd7f194729c684a",
+  "pais": "Afghanistan",
+  "anio": 2024,
+  "ventana_min": 30,
+  "grid_km": 2.0,
+  "h3_version": "4.x",
+  "registros_validados_todos_los_tipos": 1246,
+  "registros_type0": 1169,
+  "calidad_original_v2": "todas",
+  "calidad_por_fuente": {
+    "modis": {
+      "50-79": 51,
+      "80-100": 9,
+      "<30": 14,
+      "30-49": 20
+    },
+    "viirs-snpp": {
+      "n": 438,
+      "h": 13,
+      "l": 54
+    },
+    "viirs-jpss1": {
+      "n": 488,
+      "h": 11,
+      "l": 71
+    }
+  },
+  "calidad_por_fuente_y_dia_noche": {
+    "modis:D": {
+      "76.0": 4,
+      "57.0": 2,
+      "61.0": 4,
+      "69.0": 2,
+      "58.0": 1,
+      "25.0": 1,
+      "45.0": 3,
+      "11.0": 1,
+      "27.0": 3,
+      "72.0": 2,
+      "31.0": 2,
+      "65.0": 3,
+      "71.0": 3,
+      "7.0": 1,
+      "88.0": 1,
+      "77.0": 4,
+      "39.0": 2,
+      "33.0": 2,
+      "99.0": 1,
+      "97.0": 1,
+      "47.0": 1,
+      "44.0": 1,
+      "0.0": 4,
+      "62.0": 2,
+      "63.0": 2,
+      "30.0": 1,
+      "59.0": 2,
+      "55.0": 3,
+      "82.0": 1,
+      "56.0": 2,
+      "70.0": 1,
+      "91.0": 1,
+      "51.0": 1,
+      "87.0": 1,
+      "84.0": 1,
+      "48.0": 1,
+      "75.0": 1,
+      "49.0": 1,
+      "60.0": 1,
+      "37.0": 1,
+      "67.0": 1,
+      "29.0": 1,
+      "43.0": 1,
+      "38.0": 1,
+      "79.0": 1,
+      "42.0": 1,
+      "50.0": 1,
+      "18.0": 1,
+      "53.0": 1,
+      "16.0": 1,
+      "34.0": 1
+    },
+    "modis:N": {
+      "94.0": 1,
+      "78.0": 1,
+      "63.0": 1,
+      "68.0": 1,
+      "61.0": 1,
+      "66.0": 1,
+      "26.0": 1,
+      "43.0": 1,
+      "100.0": 1,
+      "64.0": 1,
+      "75.0": 1
+    },
+    "viirs-snpp:D": {
+      "n": 206,
+      "h": 10,
+      "l": 54
+    },
+    "viirs-snpp:N": {
+      "n": 232,
+      "h": 3
+    },
+    "viirs-jpss1:N": {
+      "n": 266,
+      "h": 1
+    },
+    "viirs-jpss1:D": {
+      "n": 222,
+      "h": 10,
+      "l": 71
+    }
+  },
+  "escenarios": [
+    {
+      "escenario": "todas",
+      "etiqueta": "Sin filtro de confianza",
+      "registros_type0": 1169,
+      "registros_modis": 94,
+      "registros_viirs": 1075,
+      "por_fuente": {
+        "modis": 94,
+        "viirs-snpp": 505,
+        "viirs-jpss1": 570
+      },
+      "cuadricula": {
+        "celdas_activas": 740,
+        "ambos": 34,
+        "solo_modis": 46,
+        "solo_viirs": 660,
+        "ambos_con_pareja": 17,
+        "ambos_solo_fecha": 17,
+        "parejas": 18,
+        "pares_misma_celda": 18,
+        "pares_vecinos": 0,
+        "retencion_parejas_pct": 100.0,
+        "cambio_celdas_compartidas_pct": 0.0
+      },
+      "h3": {
+        "celdas_activas": 740,
+        "ambos": 34,
+        "solo_modis": 46,
+        "solo_viirs": 660,
+        "ambos_con_pareja": 17,
+        "ambos_solo_fecha": 17,
+        "parejas": 20,
+        "pares_misma_celda": 18,
+        "pares_vecinos": 2,
+        "retencion_parejas_pct": 100.0,
+        "cambio_celdas_compartidas_pct": 0.0
+      },
+      "retencion_registros_pct": 100.0
+    },
+    {
+      "escenario": "viirs_nh",
+      "etiqueta": "VIIRS nominal/alta",
+      "registros_type0": 1044,
+      "registros_modis": 94,
+      "registros_viirs": 950,
+      "por_fuente": {
+        "modis": 94,
+        "viirs-snpp": 451,
+        "viirs-jpss1": 499
+      },
+      "cuadricula": {
+        "celdas_activas": 642,
+        "ambos": 32,
+        "solo_modis": 48,
+        "solo_viirs": 562,
+        "ambos_con_pareja": 17,
+        "ambos_solo_fecha": 15,
+        "parejas": 18,
+        "pares_misma_celda": 18,
+        "pares_vecinos": 0,
+        "retencion_parejas_pct": 100.0,
+        "cambio_celdas_compartidas_pct": -5.88
+      },
+      "h3": {
+        "celdas_activas": 642,
+        "ambos": 32,
+        "solo_modis": 48,
+        "solo_viirs": 562,
+        "ambos_con_pareja": 17,
+        "ambos_solo_fecha": 15,
+        "parejas": 20,
+        "pares_misma_celda": 18,
+        "pares_vecinos": 2,
+        "retencion_parejas_pct": 100.0,
+        "cambio_celdas_compartidas_pct": -5.88
+      },
+      "retencion_registros_pct": 89.31
+    },
+    {
+      "escenario": "modis50",
+      "etiqueta": "MODIS >=50",
+      "registros_type0": 1135,
+      "registros_modis": 60,
+      "registros_viirs": 1075,
+      "por_fuente": {
+        "modis": 60,
+        "viirs-snpp": 505,
+        "viirs-jpss1": 570
+      },
+      "cuadricula": {
+        "celdas_activas": 719,
+        "ambos": 27,
+        "solo_modis": 25,
+        "solo_viirs": 667,
+        "ambos_con_pareja": 14,
+        "ambos_solo_fecha": 13,
+        "parejas": 15,
+        "pares_misma_celda": 15,
+        "pares_vecinos": 0,
+        "retencion_parejas_pct": 83.33,
+        "cambio_celdas_compartidas_pct": -20.59
+      },
+      "h3": {
+        "celdas_activas": 719,
+        "ambos": 27,
+        "solo_modis": 25,
+        "solo_viirs": 667,
+        "ambos_con_pareja": 15,
+        "ambos_solo_fecha": 12,
+        "parejas": 17,
+        "pares_misma_celda": 15,
+        "pares_vecinos": 2,
+        "retencion_parejas_pct": 85.0,
+        "cambio_celdas_compartidas_pct": -20.59
+      },
+      "retencion_registros_pct": 97.09
+    },
+    {
+      "escenario": "ambos50",
+      "etiqueta": "MODIS >=50 + VIIRS n/h",
+      "registros_type0": 1010,
+      "registros_modis": 60,
+      "registros_viirs": 950,
+      "por_fuente": {
+        "modis": 60,
+        "viirs-snpp": 451,
+        "viirs-jpss1": 499
+      },
+      "cuadricula": {
+        "celdas_activas": 621,
+        "ambos": 25,
+        "solo_modis": 27,
+        "solo_viirs": 569,
+        "ambos_con_pareja": 14,
+        "ambos_solo_fecha": 11,
+        "parejas": 15,
+        "pares_misma_celda": 15,
+        "pares_vecinos": 0,
+        "retencion_parejas_pct": 83.33,
+        "cambio_celdas_compartidas_pct": -26.47
+      },
+      "h3": {
+        "celdas_activas": 621,
+        "ambos": 25,
+        "solo_modis": 27,
+        "solo_viirs": 569,
+        "ambos_con_pareja": 15,
+        "ambos_solo_fecha": 10,
+        "parejas": 17,
+        "pares_misma_celda": 15,
+        "pares_vecinos": 2,
+        "retencion_parejas_pct": 85.0,
+        "cambio_celdas_compartidas_pct": -26.47
+      },
+      "retencion_registros_pct": 86.4
+    },
+    {
+      "escenario": "modis80",
+      "etiqueta": "MODIS >=80",
+      "registros_type0": 1084,
+      "registros_modis": 9,
+      "registros_viirs": 1075,
+      "por_fuente": {
+        "modis": 9,
+        "viirs-snpp": 505,
+        "viirs-jpss1": 570
+      },
+      "cuadricula": {
+        "celdas_activas": 696,
+        "ambos": 5,
+        "solo_modis": 2,
+        "solo_viirs": 689,
+        "ambos_con_pareja": 3,
+        "ambos_solo_fecha": 2,
+        "parejas": 3,
+        "pares_misma_celda": 3,
+        "pares_vecinos": 0,
+        "retencion_parejas_pct": 16.67,
+        "cambio_celdas_compartidas_pct": -85.29
+      },
+      "h3": {
+        "celdas_activas": 696,
+        "ambos": 5,
+        "solo_modis": 2,
+        "solo_viirs": 689,
+        "ambos_con_pareja": 3,
+        "ambos_solo_fecha": 2,
+        "parejas": 3,
+        "pares_misma_celda": 3,
+        "pares_vecinos": 0,
+        "retencion_parejas_pct": 15.0,
+        "cambio_celdas_compartidas_pct": -85.29
+      },
+      "retencion_registros_pct": 92.73
+    },
+    {
+      "escenario": "ambos80",
+      "etiqueta": "MODIS >=80 + VIIRS n/h",
+      "registros_type0": 959,
+      "registros_modis": 9,
+      "registros_viirs": 950,
+      "por_fuente": {
+        "modis": 9,
+        "viirs-snpp": 451,
+        "viirs-jpss1": 499
+      },
+      "cuadricula": {
+        "celdas_activas": 596,
+        "ambos": 5,
+        "solo_modis": 2,
+        "solo_viirs": 589,
+        "ambos_con_pareja": 3,
+        "ambos_solo_fecha": 2,
+        "parejas": 3,
+        "pares_misma_celda": 3,
+        "pares_vecinos": 0,
+        "retencion_parejas_pct": 16.67,
+        "cambio_celdas_compartidas_pct": -85.29
+      },
+      "h3": {
+        "celdas_activas": 596,
+        "ambos": 5,
+        "solo_modis": 2,
+        "solo_viirs": 589,
+        "ambos_con_pareja": 3,
+        "ambos_solo_fecha": 2,
+        "parejas": 3,
+        "pares_misma_celda": 3,
+        "pares_vecinos": 0,
+        "retencion_parejas_pct": 15.0,
+        "cambio_celdas_compartidas_pct": -85.29
+      },
+      "retencion_registros_pct": 82.04
+    }
+  ],
+  "limitaciones": [
+    "MODIS 0-100 no es probabilidad calibrada ni equivalente a VIIRS l/n/h.",
+    "VIIRS alta h corresponde a saturación y no es necesariamente más exacta radiométricamente.",
+    "Filtrar elimina observaciones y puede modificar pasadas/parejas; nunca inferir falsos positivos solo por descartar.",
+    "Las variaciones de conteos NO estiman exactitud, sensibilidad ni especificidad.",
+    "La selección type=0 es constante; diferencias de plataforma, horario y nubes persisten.",
+    "La comparación es interna, no validación con verdad terreno; no asegura equivalencia histórica.",
+    "Los porcentajes de retención son porcentajes de REGISTROS o PAREJAS, no confianza probabilística.",
+    "Las parejas pueden reorganizarse al volver a agrupar las observaciones filtradas."
+  ]
+}
